@@ -1,3 +1,11 @@
+-- Instructions:
+-- 1. Execute the script below to create the delta_load procedure in your dedicated pool
+-- 2. Execute the stored procedure by providing delta folder path and the target table name:
+-- EXEC delta_load 'https://mystorage.dfs.core.windows.net/delta-log/green/', 'GreenTable', null
+-- 3. If you are not using AAD passthrough, provide credential info in the @credential parameter, for example:
+-- EXEC delta_load 'https://mystorage.dfs.core.windows.net/delta-log/green/', 'GreenTable', 'IDENTITY= ''Shared Access Signature'', SECRET=''<Your_SAS_Token>'''
+-- EXEC delta_load 'https://mystorage.dfs.core.windows.net/delta-log/green/', 'GreenTable', 'IDENTITY= 'IDENTITY = ''Managed Identity'''
+
 CREATE PROCEDURE delta_load @folder varchar(8000), @table_name varchar(128), @credential varchar(8000)
 AS BEGIN
     --declare @folder varchar(8000)
